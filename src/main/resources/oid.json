@@ -1,0 +1,47 @@
+{
+	"oids": {
+		"scalars": [{
+				"name": "sysDescr",
+				"oid": "1.3.6.1.2.1.1.1"
+			},
+			{
+				"name": "sysObjectID",
+				"oid": "1.3.6.1.2.1.1.2"
+			},
+			{
+				"name": "sysName",
+				"oid": "1.3.6.1.2.1.1.5"
+			}
+		],
+		"tabulars": [{
+			"tables": {
+				"ifTable": [{
+						"name": "ifDescr",
+						"oid": "1.3.6.1.2.1.2.2.1.2"
+					},
+					{
+						"name": "ifAdminStatus",
+						"oid": "1.3.6.1.2.1.2.2.1.7"
+					},
+					{
+						"name": "ifOperStatus",
+						"oid": "1.3.6.1.2.1.2.2.1.8"
+					}
+				],
+				"table2": [{
+						"name": "sysDescr",
+						"oid": "1.3.6.1.2.1.1.1"
+					},
+					{
+						"name": "sysObjectID",
+						"oid": "1.3.6.1.2.1.1.2"
+					},
+					{
+						"name": "sysName",
+						"oid": "1.3.6.1.2.1.1.5"
+					}
+				]
+			}
+		}]
+	}
+}
