@@ -3,7 +3,7 @@ package snmp.snmpmanager.models;
 import java.net.InetAddress;
 
 /**
- * 
+ * POJO class for Device Entity
  * @author Shibu Vijay
  *
  */
@@ -13,6 +13,7 @@ public class Device {
 	private InetAddress ipAddress;
 
 	private SnmpParams snmpParams;
+	private SnmpMetrices snmpMetrices; 
 
 	/**
 	 * @return the name
@@ -54,6 +55,20 @@ public class Device {
 	 */
 	public void setSnmpParams(SnmpParams snmpParams) {
 		this.snmpParams = snmpParams;
+	}
+
+	/**
+	 * @return the snmpMetrices
+	 */
+	public SnmpMetrices getSnmpMetrices() {
+		return snmpMetrices;
+	}
+
+	/**
+	 * @param snmpMetrices the snmpMetrices to set
+	 */
+	public void setSnmpMetrices(SnmpMetrices snmpMetrices) {
+		this.snmpMetrices = snmpMetrices;
 	}
 
 }

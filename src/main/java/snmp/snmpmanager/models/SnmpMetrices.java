@@ -8,14 +8,14 @@ import java.util.Map;
 import org.snmp4j.smi.OID;
 
 /**
- * 
+ * POJO class for Device's Snmp Metrices
  * @author Shibu Vijay
  *
  */
 public class SnmpMetrices {
 
 	private List<Metric> scalars;
-	private Map<String, List<Metric>> tabulars;
+	private Map<String, List<Metric>> tabulars; // Key- tableName and Value- tableOids
 	
 	public SnmpMetrices() {
 		scalars = new ArrayList<> ();
@@ -55,7 +55,7 @@ public class SnmpMetrices {
 		scalars.add(metric);
 	}
 
-	class Metric {
+	public class Metric {
 
 		private String name;
 		private OID oid;
@@ -91,6 +91,11 @@ public class SnmpMetrices {
 		 */
 		public void setOid(OID oid) {
 			this.oid = oid;
+		}
+		
+		@Override
+		public String toString() {
+			return "Metric:[Name: "+ this.name + ", OID: "+ this.oid +"]";
 		}
 
 	}

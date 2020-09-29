@@ -8,12 +8,17 @@ import snmp.snmpmanager.session.SnmpV1Session;
 import snmp.snmpmanager.session.SnmpV2Session;
 import snmp.snmpmanager.session.SnmpV3Session;
 
+/**
+ * SnmpSessionFactory
+ * @author Shibu Vijay
+ *
+ */
 public class SnmpSessionFactory {
 
 	/**
-	 * 
-	 * @param params
-	 * @return
+	 * Initiates and returns the SnmpSession based on the Snmp version
+	 * @param params SnmpParams
+	 * @return SnmpSession
 	 */
 	public SnmpSession getSnmpSession(SnmpParams params) {
 		SnmpSession snmpSession;

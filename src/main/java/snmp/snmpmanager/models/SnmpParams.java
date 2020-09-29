@@ -5,7 +5,7 @@ import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.smi.Address;
 
 /**
- * 
+ * POJO class for Device's Snmp Parameters
  * @author Shibu Vijay
  *
  */

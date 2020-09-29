@@ -1,5 +1,10 @@
 package snmp.snmpmanager;
 
+/**
+ * Constants class
+ * @author Shibu Vijay
+ *
+ */
 public interface Constants {
 	String SNMP_AUTH_PROTOCOL_MD5 = "MD5";
 	String SNMP_AUTH_PROTOCOL_SHA1 = "SHA-1";

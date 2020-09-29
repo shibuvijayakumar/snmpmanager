@@ -21,6 +21,10 @@ import org.snmp4j.smi.OctetString;
 import snmp.snmpmanager.Constants;
 import snmp.snmpmanager.models.SnmpParams;
 
+/**
+ * SnmpSession class for SNMP Version3
+ * @author Shibu Vijay
+ */
 public class SnmpV3Session extends SnmpSession {
 
 	public SnmpV3Session(SnmpParams params) {

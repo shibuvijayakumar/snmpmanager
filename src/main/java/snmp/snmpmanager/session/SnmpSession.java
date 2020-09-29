@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
 import org.snmp4j.Target;
@@ -23,11 +25,11 @@ import org.snmp4j.util.TableUtils;
 import snmp.snmpmanager.models.SnmpParams;
 
 /**
+ * SnmpSession abstract class - Uses the snmp4j and perform the get, set, gettable operations
  * @author Shibu Vijay
- *
  */
 public abstract class SnmpSession {
-
+	private static final Logger log = LogManager.getLogger(SnmpSession.class);
 	Snmp snmp = null;
 	PDU pdu = null;
 	Target target = null;
@@ -84,8 +86,8 @@ public abstract class SnmpSession {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Starts the snmp session and return snmp Obj
+	 * @return Snmp
 	 */
 	protected Snmp start() {
 		try {
@@ -98,8 +100,8 @@ public abstract class SnmpSession {
 		return snmp;
 	}
 
-	/**
-	 * 
+	/** 
+	 * Stops the Snmp
 	 */
 	protected void stop() {
 		try {
@@ -122,54 +124,51 @@ public abstract class SnmpSession {
 	}
 
 	/**
-	 * 
-	 * @param oids
-	 * @return
+	 * Performs Snmp Get Operation for the given Oids
+	 * @param oids List
+	 * @return ResponseEvent
 	 * @throws Exception
 	 */
-	public ResponseEvent get(String[] oids) throws Exception {
+	public ResponseEvent get(List<OID> oids) throws Exception {
 		pdu.setType(PDU.GET);
-		for (String oid : oids) {
-			pdu.add(new VariableBinding(new OID(oid)));
-		}
-
+		oids.forEach(oid -> pdu.add(new VariableBinding(oid)));
 		ResponseEvent response = snmp.send(pdu, target);
 		return response;
 	}
 
 	/**
-	 * 
-	 * @param setMap
-	 * @return
+	 * Performs Snmp Set Operation for the given Variable Map
+	 * @param setMap Map
+	 * @return ResponseEvent
 	 * @throws Exception
 	 */
-	public ResponseEvent set(Map<String, Variable> setMap) throws Exception {
+	public ResponseEvent set(Map<OID, Variable> setMap) throws Exception {
 		pdu.setType(PDU.SET);
-
 		setMap.forEach((oid, value) -> {
-			pdu.add(new VariableBinding(new OID(oid), value));
+			pdu.add(new VariableBinding(oid, value));
 		});
-
 		ResponseEvent response = snmp.send(pdu, target);
 		return response;
 	}
 	
 	/**
-	 * 
-	 * @param oids
-	 * @return
+	 * Perform GetTable for the given tableOids
+	 * Not supported in SnmpV1
+	 * @param oids List
+	 * @return List of TableEvent
 	 * @throws Exception
 	 */
-	public List<TableEvent> getTable (OID[] oids) throws Exception {
+	public List<TableEvent> getTable (List<OID> oidList) throws Exception {
+		OID[] oids = oidList.toArray(new OID[oidList.size()]);
 		TableUtils tUtils = new TableUtils(snmp, new DefaultPDUFactory());
 	    List<TableEvent> events = tUtils.getTable(target, oids, null, null);
 	    return events;
 	}
 
 	/**
-	 * 
-	 * @param params
-	 * @return
+	 * Creates Target
+	 * @param params SnmpParams
+	 * @return Target
 	 */
 	protected abstract Target createTarget(SnmpParams params);
 
